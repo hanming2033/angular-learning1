@@ -1,0 +1,12 @@
+<div class="container">
+  <nz-row>
+    <app-shopping-edit></app-shopping-edit>
+    <hr />
+    <nz-col nzSpan="20">
+      <p>The Shopping List</p>
+      <nz-list [nzDataSource]="ingredients" nzBordered [nzRenderItem]="ingredient">
+        <ng-template #ingredient let-ingredient><nz-list-item [nzContent]="ingredient.name + ' ' + ingredient.amount"></nz-list-item></ng-template>
+      </nz-list>
+    </nz-col>
+  </nz-row>
+</div>
