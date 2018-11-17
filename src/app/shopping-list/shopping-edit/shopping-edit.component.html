@@ -1,7 +1,7 @@
 <nz-row nzGutter="4">
   <nz-col nzSpan="2" class='ingredient-text'> Ingredient: </nz-col>
-  <nz-col nzSpan="6"> <input nz-input placeholder="Ingredient Name" [(ngModel)]="name" /> </nz-col>
-  <nz-col nzSpan="3"> <input nz-input placeholder="Quantity" [(ngModel)]="quantity" type="number"/> </nz-col>
+  <nz-col nzSpan="6"> <input nz-input placeholder="Ingredient Name" [(ngModel)]="name" #nameInput/> </nz-col>
+  <nz-col nzSpan="3"> <input nz-input placeholder="Quantity" [(ngModel)]="quantity" type="number" #qtyInput/> </nz-col>
 </nz-row>
 <br>
 <nz-row nzGutter="8">

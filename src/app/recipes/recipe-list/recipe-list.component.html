@@ -6,8 +6,8 @@
   <div nz-col nzSpan="24">
     <nz-list [nzDataSource]="recipes" [nzRenderItem]="item" [nzItemLayout]="'horizontal'">
       <ng-template #item let-item>
-        <nz-list-item>
-          <nz-list-item-meta [nzTitle]="nzTitle" [nzAvatar]="item.image" [nzDescription]="item.description">
+        <nz-list-item (click)="onSelected(item)">
+          <nz-list-item-meta [nzTitle]="nzTitle" [nzAvatar]="item.image" [nzDescription]="item.description.substring(0,50) + '...'">
             <ng-template #nzTitle>
               <a>{{ item.name }}</a>
             </ng-template>
@@ -15,6 +15,5 @@
         </nz-list-item>
       </ng-template>
     </nz-list>
-    <app-recipe-item></app-recipe-item>
   </div>
 </div>

@@ -1,15 +1,30 @@
-<h1>Recipe Name</h1>
-<!-- button -->
-<div nz-row>
-  <nz-dropdown>
-    <button nz-button nz-dropdown (click)="log()"><span>Manage Recipe</span> <i nz-icon type="down"></i></button>
-    <ul nz-menu>
-      <li nz-menu-item><a>To Shopping List</a></li>
-      <li nz-menu-item><a>Edit Recipe</a></li>
-      <li nz-menu-item><a>Delete Recipe</a></li>
-    </ul>
-  </nz-dropdown>
+<div *ngIf="recipe">
+  <img [src]="recipe.image" [alt]="recipe.description" height="300px" width="auto" />
+  <h1>Recipe Name</h1>
+  <!-- button -->
+  <div nz-row>
+    <nz-dropdown>
+      <button nz-button nz-dropdown><span>Manage Recipe</span> <i nz-icon type="down"></i></button>
+      <ul nz-menu>
+        <li nz-menu-item (click)="onAddToShoppingList()"><a>To Shopping List</a></li>
+        <li nz-menu-item><a>Edit Recipe</a></li>
+        <li nz-menu-item><a>Delete Recipe</a></li>
+      </ul>
+    </nz-dropdown>
+  </div>
+  <!-- others -->
+
+  <div nz-row>
+    <div nz-col nzSpan="24">{{ recipe.name }}</div>
+  </div>
+  <div nz-row>
+    <div nz-col nzSpan="24">{{ recipe.description }}</div>
+  </div>
+  <nz-row>
+    <nz-col nzSpan="24">
+      <nz-list [nzDataSource]="recipe.ingredients" nzBordered [nzRenderItem]="item">
+        <ng-template #item let-item><nz-list-item [nzContent]="item.name + ' (' + item.quantity + ')'"></nz-list-item></ng-template>
+      </nz-list>
+    </nz-col>
+  </nz-row>
 </div>
-<!-- others -->
-<div nz-row><div nz-col nzSpan="24">Description</div></div>
-<div nz-row><div nz-col nzSpan="24">Ingredients</div></div>

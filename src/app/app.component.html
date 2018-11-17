@@ -1,3 +1,3 @@
-<app-header></app-header>
-<app-recipes></app-recipes>
-<app-shopping-list></app-shopping-list>
+<app-header (showComponent)="onShowComponent($event)"></app-header>
+<app-recipes *ngIf="componentToShow === 'recipes'"></app-recipes>
+<app-shopping-list *ngIf="componentToShow === 'shopping'"></app-shopping-list>
