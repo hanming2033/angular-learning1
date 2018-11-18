@@ -1,6 +1,6 @@
 <div *ngIf="recipe">
   <img [src]="recipe.image" [alt]="recipe.description" height="300px" width="auto" />
-  <h1>Recipe Name</h1>
+  <h1>{{ recipe.name }}</h1>
   <!-- button -->
   <div nz-row>
     <nz-dropdown>
@@ -14,9 +14,6 @@
   </div>
   <!-- others -->
 
-  <div nz-row>
-    <div nz-col nzSpan="24">{{ recipe.name }}</div>
-  </div>
   <div nz-row>
     <div nz-col nzSpan="24">{{ recipe.description }}</div>
   </div>

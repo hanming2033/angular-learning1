@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Recipe } from '../recipe.model'
 import { RecipesService } from '../recipes.service'
+import { ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'app-recipe-list',
@@ -9,13 +10,13 @@ import { RecipesService } from '../recipes.service'
 })
 export class RecipeListComponent implements OnInit {
   recipes: Recipe[]
-  constructor(private recipeService: RecipesService) {}
+  selectedId: string
+  constructor(private recipeService: RecipesService, private actRoute: ActivatedRoute) {}
 
   ngOnInit() {
     this.recipes = this.recipeService.getRecipes()
-  }
-
-  onSelected(r: Recipe) {
-    this.recipeService.eRecipeSelected.emit(r)
+    this.actRoute.firstChild.params.subscribe(params => {
+      this.selectedId = params['id']
+    })
   }
 }

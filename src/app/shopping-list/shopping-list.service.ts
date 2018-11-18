@@ -19,17 +19,18 @@ export class ShoppingListService {
     this.eIngredientChanged.emit([...this.ingredients])
   }
 
-  addIngredients(ingredients: Ingredient[]) {
-    const finalIngredients = [...this.ingredients]
+  addIngredients(incomingIngr: Ingredient[]) {
+    const finalIngredients = JSON.parse(JSON.stringify(this.ingredients))
+    const newIngredients = JSON.parse(JSON.stringify(incomingIngr))
     finalIngredients.forEach(ingredient => {
-      for (let i = 0; i < ingredients.length; i++) {
-        const ing = ingredients[i]
+      for (let i = 0; i < newIngredients.length; i++) {
+        const ing = newIngredients[i]
         if (ing.name === ingredient.name) {
-          ingredient.quantity += ing.quantity
+          ingredient.quantity = ingredient.quantity + ing.quantity
         }
       }
     })
-    finalIngredients.push(...ingredients.filter(ingredient => !finalIngredients.map(fi => fi.name).includes(ingredient.name)))
+    finalIngredients.push(...newIngredients.filter(ingredient => !finalIngredients.map(fi => fi.name).includes(ingredient.name)))
     this.ingredients = [...finalIngredients]
     this.eIngredientChanged.emit([...this.ingredients])
   }

@@ -1,8 +1,12 @@
 <nz-header>
   <div class="logo"></div>
   <ul nz-menu [nzTheme]="'dark'" [nzMode]="'horizontal'" style="line-height: 64px;">
-    <li nz-menu-item (click)="onChangeComponent('recipes')">Recipes</li>
-    <li nz-menu-item (click)="onChangeComponent('shopping')">Shopping List</li>
+    <li nz-menu-item [routerLink]="['/recipes']" routerLinkActive #rlaRecipes="routerLinkActive" [nzSelected]="rlaRecipes.isActive">
+      Recipes
+    </li>
+    <li nz-menu-item [routerLink]="['/shopping-list']" routerLinkActive #rlaShopping="routerLinkActive" [nzSelected]="rlaShopping.isActive">
+      Shopping List
+    </li>
     <li nz-submenu>
       <span title><i nz-icon type="setting"></i>Manage</span>
       <ul>

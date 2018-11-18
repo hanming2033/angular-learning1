@@ -15,7 +15,8 @@ import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component
 import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component'
 import { ShoppingListComponent } from './shopping-list/shopping-list.component'
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
-import { TestClassDirective } from './shared/directives/test-class.directive'
+import { TestClassDirective } from './shared/directives/test-class.directive';
+import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component'
 
 registerLocaleData(en)
 
@@ -28,7 +29,8 @@ registerLocaleData(en)
     RecipeDetailComponent,
     ShoppingListComponent,
     ShoppingEditComponent,
-    TestClassDirective
+    TestClassDirective,
+    RecipeEditComponent
   ],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, FormsModule, HttpClientModule, NgZorroAntdModule],
   providers: [{ provide: NZ_I18N, useValue: en_US }],

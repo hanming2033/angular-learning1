@@ -6,10 +6,10 @@
   <div nz-col nzSpan="24">
     <nz-list [nzDataSource]="recipes" [nzRenderItem]="item" [nzItemLayout]="'horizontal'">
       <ng-template #item let-item>
-        <nz-list-item (click)="onSelected(item)">
-          <nz-list-item-meta [nzTitle]="nzTitle" [nzAvatar]="item.image" [nzDescription]="item.description.substring(0,50) + '...'">
+        <nz-list-item style="cursor:pointer" [routerLink]="[item.id]">
+          <nz-list-item-meta [nzTitle]="nzTitle" [nzAvatar]="item.image" [nzDescription]="item.description.substring(0, 50) + '...'">
             <ng-template #nzTitle>
-              <a>{{ item.name }}</a>
+              <a [ngClass]="{ active: selectedId === item.id ? true : false }">{{ item.name }}</a>
             </ng-template>
           </nz-list-item-meta>
         </nz-list-item>
