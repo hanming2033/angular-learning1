@@ -7,13 +7,12 @@
       <button nz-button nz-dropdown><span>Manage Recipe</span> <i nz-icon type="down"></i></button>
       <ul nz-menu>
         <li nz-menu-item (click)="onAddToShoppingList()"><a>To Shopping List</a></li>
-        <li nz-menu-item><a>Edit Recipe</a></li>
-        <li nz-menu-item><a>Delete Recipe</a></li>
+        <li nz-menu-item [routerLink]="['edit']" ><a>Edit Recipe</a></li>
+        <li nz-menu-item (click)="onDeleteRecipe()"><a>Delete Recipe</a></li>
       </ul>
     </nz-dropdown>
   </div>
   <!-- others -->
-
   <div nz-row>
     <div nz-col nzSpan="24">{{ recipe.description }}</div>
   </div>

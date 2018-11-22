@@ -1,13 +1,15 @@
-<nz-row nzGutter="4">
-  <nz-col nzSpan="2" class='ingredient-text'> Ingredient: </nz-col>
-  <nz-col nzSpan="6"> <input nz-input placeholder="Ingredient Name" [(ngModel)]="name" #nameInput/> </nz-col>
-  <nz-col nzSpan="3"> <input nz-input placeholder="Quantity" [(ngModel)]="quantity" type="number" #qtyInput/> </nz-col>
-</nz-row>
-<br>
-<nz-row nzGutter="8">
-  <nz-button-group>
-    <button (click)="onAdd()" nz-button nzType="primary">Add</button>
-    <button (click)="onDelete()" nz-button nzType="danger">Delete</button>
-    <button (click)="onClear()" nz-button nzType="default">Clear</button>
-  </nz-button-group>
-</nz-row>
+<form [formGroup]="shoppingForm" (ngSubmit)="onSubmit()">
+  <nz-row nzGutter="4">
+    <nz-col nzSpan="2" class="ingredient-text"> Ingredient: </nz-col>
+    <nz-col nzSpan="6"> <input nz-input placeholder="Ingredient Name" formControlName="name" /> </nz-col>
+    <nz-col nzSpan="3"> <input nz-input placeholder="Quantity" formControlName="quantity" type="number" /> </nz-col>
+  </nz-row>
+  <br />
+  <nz-row nzGutter="8">
+    <nz-button-group>
+      <button nz-button nzType="primary" type="submit" [disabled]="shoppingForm.invalid">{{ editMode ? 'Update' : 'Add' }}</button>
+      <button type="button" (click)="onDelete()" nz-button nzType="danger" *ngIf="editMode">Delete</button>
+      <button type="button" (click)="onClear()" nz-button nzType="default" [disabled]="shoppingForm.pristine">Clear</button>
+    </nz-button-group>
+  </nz-row>
+</form>

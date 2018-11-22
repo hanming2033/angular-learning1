@@ -1,20 +1,18 @@
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
-import { RecipesComponent } from './recipes/recipes.component'
 import { ShoppingListComponent } from './shopping-list/shopping-list.component'
-import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component'
+import { SigninComponent } from './auth/signin/signin.component'
+import { SignupComponent } from './auth/signup/signup.component'
 
 const routes: Routes = [
-  {
-    path: 'recipes',
-    component: RecipesComponent,
-    children: [{ path: ':id', component: RecipeDetailComponent }, { path: '', component: RecipeDetailComponent }]
-  },
+  { path: 'login', component: SigninComponent },
+  { path: 'signup', component: SignupComponent },
   { path: 'shopping-list', component: ShoppingListComponent },
   { path: '', redirectTo: '/recipes', pathMatch: 'full' }
 ]
 
 @NgModule({
+  // * this routes are attached to main route, so use forRoot
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })

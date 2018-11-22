@@ -1,3 +1,47 @@
-<p>
-  recipe-edit works!
-</p>
+<form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+  <nz-button-group>
+    <button type="submit" nz-button nzType="primary" [disabled]="recipeForm.invalid">Save</button>
+    <button type="button" (click)="onClear()" nzType="danger" nz-button>Cancel</button>
+  </nz-button-group>
+  <br />
+  <br />
+  <label>
+    Recipe Name: <br />
+    <input formControlName="name" nz-input placeholder="Recipe Name" style="width: 70%" />
+  </label>
+  <br />
+  <br />
+  <label>
+    Image URL: <br />
+    <input formControlName="url" nz-input placeholder="Image URL" style="width: 70%" #urlRef/>
+  </label>
+  <br />
+  <img [src]="urlRef.value" style="margin-top: 3px">
+  <br />
+  <br />
+  <label>
+    Description: <br />
+    <textarea formControlName="description" rows="4" nz-input style="width: 90%"></textarea>
+  </label>
+  <br />
+  <br />
+  <div formArrayName="ingredients">
+    <nz-row
+    nzGutter="8"
+    *ngFor="let ingredientCtrl of getIngredientCtrls(); let i = index"
+    [formGroupName]="i"
+    >
+    <!-- i above represents ingredientCtrl, no formal name because it is in a loop which no name will be assigned. Hence use index -->
+      <!-- once inside the form group, formControlName is referenced directly without nesting like i.name -->
+      <nz-col nzSpan="14"> <input nz-input placeholder="Ingredient Name" formControlName="name" /></nz-col>
+      <nz-col nzSpan="4"> <input nz-input placeholder="0" formControlName="quantity" type="number" /> </nz-col>
+      <nz-col nzSpan="3">
+        <button type="button" (click)="onDeleteIngredient(i)" nz-button nzType="danger"><i nz-icon type="delete" theme="fill"></i></button>
+      </nz-col>
+    </nz-row>
+    <nz-divider></nz-divider>
+    <nz-row nzGutter="8">
+      <button type="button" (click)="addIngredient()" nz-button>Add Ingredient</button>
+    </nz-row>
+  </div>
+</form>

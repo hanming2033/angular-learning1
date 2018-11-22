@@ -4,7 +4,7 @@ export class Recipe {
   public id: string
   public description: string
   public image: string
-  public ingredients: Ingredient[]
+  public ingredients?: Ingredient[]
 
   constructor(name: string, id: string, desc: string, imagePath: string, ingredients: Ingredient[]) {
     this.name = name

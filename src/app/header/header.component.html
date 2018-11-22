@@ -7,12 +7,13 @@
     <li nz-menu-item [routerLink]="['/shopping-list']" routerLinkActive #rlaShopping="routerLinkActive" [nzSelected]="rlaShopping.isActive">
       Shopping List
     </li>
-    <li nz-submenu>
+    <li nz-submenu *ngIf="show">
       <span title><i nz-icon type="setting"></i>Manage</span>
       <ul>
-        <li nz-menu-item>Save Data</li>
-        <li nz-menu-item>Fetch Data</li>
+        <li nz-menu-item (click)="onSaveRecipes()">Save Data</li>
+        <li nz-menu-item (click)="onGetRecipes()">Fetch Data</li>
       </ul>
     </li>
+    <li nz-menu-item [routerLink]="['/login']" routerLinkActive #rlaLogin="routerLinkActive" [nzSelected]="rlaLogin.isActive">Login</li>
   </ul>
 </nz-header>
