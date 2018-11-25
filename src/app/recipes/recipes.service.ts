@@ -41,7 +41,6 @@ export class RecipesService {
   ]
   constructor(private http: HttpClient, private as: AuthService) {
     this.http.get(this._url).subscribe(data => {
-      console.log(data)
       this.recipes = data as Recipe[]
       this.obsRecipeAdded.next([...this.recipes])
     })
@@ -81,15 +80,12 @@ export class RecipesService {
 
   async onSaveRecipes() {
     const token = await this.as.getToken()
-    this.http.put(this._url + '?auth=' + token, this.recipes).subscribe(data => {
-      console.log(data)
-    })
+    this.http.put(this._url + '?auth=' + token, this.recipes).subscribe(data => {})
   }
 
   async onGetRecipes() {
     const token = await this.as.getToken()
     this.http.get(this._url + '?auth=' + token).subscribe(data => {
-      console.log(data)
       this.recipes = data as Recipe[]
       this.obsRecipeAdded.next([...this.recipes])
     })

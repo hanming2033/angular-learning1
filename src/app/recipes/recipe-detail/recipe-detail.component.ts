@@ -1,9 +1,11 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core'
+import { Component, OnInit, OnDestroy } from '@angular/core'
 import { Recipe } from '../recipe.model'
 import { RecipesService } from '../recipes.service'
-import { ShoppingListService } from 'src/app/shopping-list/shopping-list.service'
 import { ActivatedRoute, Router } from '@angular/router'
 import { Subscription } from 'rxjs'
+import { Store } from '@ngrx/store'
+import { AddIngredients } from '../../store/shoppingStore/shopping-list.actions'
+import { AppState } from '../../store/app.reducers'
 
 @Component({
   selector: 'app-recipe-detail',
@@ -15,9 +17,10 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
   sub: Subscription
   constructor(
     private rs: RecipesService,
-    private svcSL: ShoppingListService,
     private activeRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    // * dependcy injection in component
+    private store: Store<AppState>
   ) {}
 
   ngOnInit() {
@@ -36,7 +39,9 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
   }
 
   onAddToShoppingList() {
-    this.svcSL.addIngredients([...this.recipe.ingredients])
+    // * dispathcing actions
+    // * each action is a object which is class in es6
+    this.store.dispatch(new AddIngredients([...this.recipe.ingredients]))
   }
 
   onDeleteRecipe() {

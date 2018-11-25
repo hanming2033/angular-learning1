@@ -4,9 +4,13 @@
     <hr />
     <nz-col nzSpan="20">
       <p>The Shopping List</p>
-      <nz-list [nzDataSource]="ingredients" nzBordered [nzRenderItem]="ingredient">
+      <!-- shoppingListState | async is to resolve the observable which returns {ingredients: Ingredient[]} -->
+      <nz-list [nzDataSource]="(shoppingListState | async).ingredients" nzBordered [nzRenderItem]="ingredient">
         <ng-template #ingredient let-ingredient
-          ><nz-list-item (click)="onEditItem(ingredient.name,ingredient.quantity)" [nzContent]="ingredient.name + ' ' + ingredient.quantity"></nz-list-item
+          ><nz-list-item
+            (click)="onEditItem(ingredient.name, ingredient.quantity)"
+            [nzContent]="ingredient.name + ' ' + ingredient.quantity"
+          ></nz-list-item
         ></ng-template>
       </nz-list>
     </nz-col>

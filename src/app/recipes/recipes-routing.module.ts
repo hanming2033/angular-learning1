@@ -4,10 +4,9 @@ import { RecipeEditComponent } from './recipe-edit/recipe-edit.component'
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component'
 import { Routes, RouterModule } from '@angular/router'
 
-// * routing for feature module is a sub set of all routing
 const routes: Routes = [
   {
-    path: 'recipes',
+    path: '', // * path is now '' instead of 'recipes' because loadChildren loads 'recipes' already
     component: RecipesComponent,
     children: [
       { path: 'new', component: RecipeEditComponent },

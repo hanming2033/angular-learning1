@@ -14,6 +14,16 @@
         <li nz-menu-item (click)="onGetRecipes()">Fetch Data</li>
       </ul>
     </li>
-    <li nz-menu-item [routerLink]="['/login']" routerLinkActive #rlaLogin="routerLinkActive" [nzSelected]="rlaLogin.isActive">Login</li>
+    <li nz-menu-item (click)="onLogout()" *ngIf="(authState | async).isAuthenticated">Logout</li>
+    <li
+      nz-menu-item
+      *ngIf="!(authState | async).isAuthenticated"
+      [routerLink]="['/login']"
+      routerLinkActive
+      #rlaLogin="routerLinkActive"
+      [nzSelected]="rlaLogin.isActive"
+    >
+      Login
+    </li>
   </ul>
 </nz-header>
